@@ -101,6 +101,7 @@ export default function PocketParkGrid() {
                 width: '118%',
                 maxWidth: 'none',
                 height: 'auto',
+                marginRight: '5%',
                 display: 'block',
                 mixBlendMode: 'multiply',
               }}
