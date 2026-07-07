@@ -133,7 +133,7 @@ export default function Hero() {
             </motion.h1>
 
             <motion.p variants={itemVariants} className="text-lg leading-relaxed mb-9" style={{ color: '#63636C', maxWidth: 520 }}>
-              连接 <strong style={{ color: '#17171C', fontWeight: 600 }}>同济 · 维也纳建筑美学</strong> 与前沿 AIGC，
+              从 <strong style={{ color: '#17171C', fontWeight: 600 }}>建筑美学</strong> 跨界到前沿 AIGC，
               以 ComfyUI 工作流和 LoRA 训练重构电商与品牌的视觉转化率。
             </motion.p>
 
