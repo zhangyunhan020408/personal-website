@@ -78,3 +78,13 @@ body {
   user-select: none;
   pointer-events: none;
 }
+
+/* Display / script font helpers */
+.display-font {
+  font-family: var(--font-display);
+}
+
+.script-font {
+  font-family: var(--font-script);
+  font-weight: 700;
+}
