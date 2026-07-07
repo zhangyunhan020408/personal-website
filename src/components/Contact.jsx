@@ -1,7 +1,8 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Phone, MapPin, X, MessageCircle } from 'lucide-react';
 import { useState } from 'react';
-import { Halo, ScriptNote, Confetti } from './Decor';
+import { Halo, Confetti } from './Decor';
+import wechatQR from '../assets/wechat-qr.jpg';
 
 function QRModal({ onClose }) {
   return (
@@ -40,10 +41,10 @@ function QRModal({ onClose }) {
             扫码添加微信
           </p>
           <img
-            src="/wechat-qr.png"
-            alt="微信二维码"
+            src={wechatQR}
+            alt="微信二维码 · 燃烧不落之翼"
             className="w-full rounded-2xl"
-            style={{ maxWidth: 240 }}
+            style={{ maxWidth: 260 }}
           />
           <p className="text-xs text-center" style={{ color: '#A8A8AE' }}>
             燃烧不落之翼 · 期待与您合作
@@ -122,12 +123,9 @@ export default function Contact() {
                 letterSpacing: '-0.02em',
               }}
             >
-              期待与您打造
+              期待与您共同发掘
               <br />
-              <span style={{ color: '#FF5A3C' }}>下一个爆款视觉</span>
-              <ScriptNote className="absolute -right-20 -bottom-12 text-4xl rotate-[-8deg] hidden md:block whitespace-nowrap">
-                一起搞点大的～
-              </ScriptNote>
+              <span style={{ color: '#FF5A3C' }}>AIGC 的视觉潜力</span>
             </motion.h2>
 
             <motion.p

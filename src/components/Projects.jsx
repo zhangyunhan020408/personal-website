@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Lightbulb, Wrench, TrendingUp } from 'lucide-react';
-import { Halo, ScriptNote } from './Decor';
+import { Halo } from './Decor';
 import Masonry from './Masonry';
 import CircularGallery from './CircularGallery';
 import SerlioGallery from './SerlioGallery';
@@ -237,14 +237,19 @@ function ProjectCard({ project, index: idx }) {
       transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
       className="relative"
     >
-      {/* Bleeding ghost index number */}
-      <p
-        aria-hidden="true"
-        className={`hidden md:block absolute -top-14 ${isEven ? 'left-2' : 'right-2'} display-font font-bold select-none pointer-events-none z-0`}
-        style={{ fontSize: 'clamp(6rem, 11vw, 11rem)', color: 'rgba(20,20,20,0.05)', letterSpacing: '-0.04em', lineHeight: 1 }}
-      >
-        NO.{project.index}
-      </p>
+      {/* Project index label (always fully visible, above the card) */}
+      <div className={`hidden md:flex items-end gap-3 mb-3 ${isEven ? '' : 'justify-end'}`}>
+        <span
+          className="display-font font-bold leading-none select-none"
+          style={{ fontSize: 'clamp(2.6rem, 4.4vw, 4rem)', color: project.accent, opacity: 0.22, letterSpacing: '-0.03em' }}
+        >
+          NO.{project.index}
+        </span>
+        <span
+          className="mb-2 h-px flex-1 max-w-[120px]"
+          style={{ background: `${project.accent}33` }}
+        />
+      </div>
       {/* Colored halo bleeding behind the visual */}
       <div
         aria-hidden="true"
@@ -290,12 +295,6 @@ function ProjectCard({ project, index: idx }) {
               scrollSpeed={26}
             />
           </div>
-          <p
-            className="text-center text-xs py-3 px-4"
-            style={{ color: '#A8A8AE', letterSpacing: '0.02em' }}
-          >
-            分镜画面自动轮播
-          </p>
         </div>
       ) : project.id === 2 ? (
         <div
@@ -499,13 +498,7 @@ export default function Projects() {
             className="text-4xl md:text-5xl font-bold tracking-tight"
             style={{ color: '#1A1A1E', letterSpacing: '-0.02em', lineHeight: 1.1 }}
           >
-            精选项目，每一个都
-            <span className="relative inline-block">
-              <span style={{ color: '#FF5A3C' }}>商业落地</span>
-              <ScriptNote className="absolute -right-4 -top-7 text-3xl rotate-[-8deg]" style={{ whiteSpace: 'nowrap' }}>
-                真的能用！
-              </ScriptNote>
-            </span>
+            精选项目
           </h2>
           <p className="mt-6 text-base leading-relaxed" style={{ color: '#6C6C74' }}>
             六个 AIGC 落地项目，从教育到电商、从非遗到建筑，每一个都跑通了「痛点 → 方案 → 结果」的完整链路。

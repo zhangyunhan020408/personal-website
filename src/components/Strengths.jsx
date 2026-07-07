@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Factory, BarChart3, Layers, Globe2 } from 'lucide-react';
-import { Halo, ScriptNote } from './Decor';
+import { Halo } from './Decor';
 
 const strengths = [
   {
@@ -24,7 +24,7 @@ const strengths = [
     accent: '#2B7A5B',
     accentBg: 'rgba(43,122,91,0.09)',
     title: '跨界空间审美',
-    desc: '同济 × 维也纳建筑双修赋予极强的空间构成感与光影敏感度，让 AI 生成画面天然具有高级建筑美学气质。',
+    desc: '同济和维也纳的建筑学习经历赋予极强的空间构成感与设计敏感度，让 AIGC 产出有天然的跨界美学气质。',
     tags: ['空间构成', '光影美学', '建筑图学'],
   },
   {
@@ -133,12 +133,7 @@ export default function Strengths() {
             style={{ color: '#1A1A1E', letterSpacing: '-0.02em', lineHeight: 1.1 }}
           >
             四大核心优势，构成
-            <span className="relative inline-block">
-              <span style={{ color: '#2B6BC4' }}>竞争壁垒</span>
-              <ScriptNote className="absolute -right-2 -top-7 text-3xl rotate-[-6deg]" color="#2B6BC4" style={{ whiteSpace: 'nowrap' }}>
-                不可替代～
-              </ScriptNote>
-            </span>
+            <span style={{ color: '#2B6BC4' }}>竞争壁垒</span>
           </h2>
         </motion.div>
 

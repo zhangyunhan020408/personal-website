@@ -273,6 +273,20 @@ export default function Masonry({
       }
     });
 
+    // Position the duplicated (b-) list used for the seamless infinite loop.
+    // These items are not part of the entrance animation, so set them directly.
+    if (autoScroll) {
+      grid.forEach((item) => {
+        gsap.set(`[data-key="b-${item.id}"]`, {
+          x: item.x,
+          y: item.y,
+          width: item.w,
+          height: item.h,
+          opacity: 1,
+        });
+      });
+    }
+
     hasMounted.current = true;
   }, [grid, imagesReady, stagger, animateFrom, blurToFocus, duration, ease, autoScroll, totalHeight, scrollSpeed]);
 

@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowDown, Sparkles } from 'lucide-react';
 import avatarImg from '../assets/avatar.png';
-import { Halo, GhostNumber, ScriptNote, Confetti } from './Decor';
+import { Halo, GhostNumber, Confetti } from './Decor';
 
 const containerVariants = {
   hidden: {},
@@ -17,7 +17,6 @@ const stats = [
   { value: '1000+', label: 'LoRA 使用', color: '#FF5A3C' },
   { value: '双硕士', label: '同济 · 维也纳', color: '#2B7A5B' },
   { value: '雅思 7.5', label: '国际视野', color: '#2B6BC4' },
-  { value: '3+', label: '商业落地', color: '#C98A2B' },
 ];
 
 function PhotoCard() {
@@ -93,7 +92,6 @@ function PhotoCard() {
           right: -18,
           background: '#17171C',
           boxShadow: '0 16px 40px -12px rgba(23,23,28,0.35)',
-          '--rot': '3deg',
         }}
       >
         <p className="text-xs font-medium" style={{ color: 'rgba(255,255,255,0.55)' }}>DigitalFUTURES</p>
@@ -124,16 +122,6 @@ export default function Hero() {
         <div className="flex flex-col lg:flex-row items-center justify-between gap-14 lg:gap-16 pt-36 lg:pt-40 pb-24">
           {/* Left: text */}
           <motion.div variants={containerVariants} initial="hidden" animate="visible" className="flex-1 max-w-2xl">
-            <motion.div variants={itemVariants} className="mb-7">
-              <span
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold"
-                style={{ background: '#fff', border: '1px solid rgba(23,23,28,0.06)', color: '#17171C', boxShadow: '0 6px 20px -10px rgba(23,23,28,0.2)' }}
-              >
-                <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: '#FF5A3C' }} />
-                AI 视觉兼品牌设计师 · 开放实习合作
-              </span>
-            </motion.div>
-
             <motion.h1
               variants={itemVariants}
               className="font-bold leading-[1.04] tracking-tight mb-6"
@@ -141,15 +129,7 @@ export default function Hero() {
             >
               让 <span style={{ color: '#FF5A3C' }}>AI</span> 赋能
               <br />
-              <span className="relative inline-block">
-                新商业视觉
-                <ScriptNote
-                  className="absolute whitespace-nowrap"
-                  style={{ fontSize: '1.9rem', right: '-2.6rem', top: '-1.6rem', transform: 'rotate(-8deg)' }}
-                >
-                  转化率 ↑
-                </ScriptNote>
-              </span>
+              新商业视觉
             </motion.h1>
 
             <motion.p variants={itemVariants} className="text-lg leading-relaxed mb-9" style={{ color: '#63636C', maxWidth: 520 }}>
@@ -175,7 +155,7 @@ export default function Hero() {
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold"
                 style={{ background: 'rgba(255,255,255,0.6)', color: '#17171C', border: '1px solid rgba(23,23,28,0.08)' }}
               >
-                聊聊合作
+                微信联系
               </motion.a>
             </motion.div>
 
