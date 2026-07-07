@@ -1,0 +1,34 @@
+.list {
+  position: relative;
+  width: 100%;
+}
+
+.masonry-viewport {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.masonry-track {
+  will-change: transform;
+}
+
+.item-wrapper {
+  position: absolute;
+  will-change: transform, width, height, opacity;
+  padding: 4px;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+}
+
+.item-wrapper > .item-img {
+  position: relative;
+  background-size: cover;
+  background-position: center center;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  box-shadow: 0 6px 24px -6px rgba(0, 0, 0, 0.18);
+}

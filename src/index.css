@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+@theme {
+  /* Airy neutral canvas */
+  --color-canvas: #F1F0F3;
+  --color-canvas-alt: #FBFAFC;
+  --color-surface: #FFFFFF;
+
+  /* Ink */
+  --color-ink: #17171C;
+  --color-ink-secondary: #63636C;
+  --color-ink-tertiary: #A6A6AF;
+  --color-border: #E8E7EC;
+
+  /* Warm coral brand accent (echoes the poster spheres/arrows) */
+  --color-primary: #FF5A3C;
+  --color-primary-deep: #E8452A;
+  --color-primary-soft: #FFEDE7;
+
+  /* Soft pastel decoration tints */
+  --color-tint-peach: #FFC9A8;
+  --color-tint-mint: #9DE7C6;
+  --color-tint-sky: #A9C7FF;
+
+  --font-display: 'Space Grotesk', 'PingFang SC', system-ui, sans-serif;
+  --font-script: 'Caveat', cursive;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: #F1F0F3;
+  color: #17171C;
+  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: #FF5A3C;
+  color: #fff;
+}
+
+/* Soft floating animation for playful decorative elements */
+@keyframes floaty {
+  0%, 100% { transform: translateY(0) rotate(var(--rot, 0deg)); }
+  50% { transform: translateY(-14px) rotate(var(--rot, 0deg)); }
+}
+
+.animate-floaty {
+  animation: floaty 6s ease-in-out infinite;
+}
+
+/* Ghost display number outline */
+.ghost-number {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 0.8;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(23,23,28,0.09);
+  user-select: none;
+  pointer-events: none;
+}
+
+.ghost-fill {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 0.8;
+  color: rgba(23,23,28,0.04);
+  user-select: none;
+  pointer-events: none;
+}
