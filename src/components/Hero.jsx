@@ -133,8 +133,7 @@ export default function Hero() {
             </motion.h1>
 
             <motion.p variants={itemVariants} className="text-lg leading-relaxed mb-9" style={{ color: '#63636C', maxWidth: 520 }}>
-              从 <strong style={{ color: '#17171C', fontWeight: 600 }}>建筑美学</strong> 跨界到前沿 AIGC，
-              以 ComfyUI 工作流和 LoRA 训练重构电商与品牌的视觉转化率。
+              从建筑美学跨界到前沿 AIGC，以 ComfyUI 工作流和 LoRA 训练重构电商与品牌的视觉转化率。
             </motion.p>
 
             <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-4 mb-14">

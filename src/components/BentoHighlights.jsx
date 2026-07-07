@@ -121,11 +121,11 @@ function CardTech() {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 flex-1">
+      <div className="grid grid-cols-2 gap-2.5">
         {techs.map((t) => (
           <div
             key={t.name}
-            className="rounded-2xl px-4 py-3 flex flex-col justify-center"
+            className="rounded-2xl px-4 py-3"
             style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}
           >
             <p className="text-sm font-semibold" style={{ color: '#fff' }}>{t.name}</p>

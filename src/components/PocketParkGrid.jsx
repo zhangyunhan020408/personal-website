@@ -91,7 +91,7 @@ export default function PocketParkGrid() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.97 }}
             transition={{ duration: 0.35, ease: 'easeOut' }}
-            style={{ width: '100%', overflow: 'hidden' }}
+            style={{ width: '100%', overflow: 'hidden', display: 'flex', justifyContent: 'center' }}
           >
             <img
               src={pocketParkHero}
@@ -100,7 +100,6 @@ export default function PocketParkGrid() {
               style={{
                 width: '118%',
                 maxWidth: 'none',
-                marginLeft: '-9%',
                 height: 'auto',
                 display: 'block',
                 mixBlendMode: 'multiply',
