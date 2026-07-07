@@ -46,7 +46,7 @@ const preloadImages = async (urls) => {
   );
 };
 
-function buildGrid(items, columns, width) {
+function buildGrid(items, columns, width, { balanceColumns = false } = {}) {
   if (!width) return { grid: [], totalHeight: 0 };
 
   const colHeights = new Array(columns).fill(0);
@@ -60,10 +60,26 @@ function buildGrid(items, columns, width) {
 
     colHeights[col] += height;
 
-    return { ...child, x, y, w: columnWidth, h: height };
+    return { ...child, col, x, y, w: columnWidth, h: height };
   });
 
-  return { grid: gridItems, totalHeight: Math.max(...colHeights, 0) };
+  const totalHeight = Math.max(...colHeights, 0);
+
+  // For seamless looping galleries, stretch each column so every column ends at
+  // exactly totalHeight. This removes the blank gap that appears beneath shorter
+  // columns when the duplicated track wraps around.
+  if (balanceColumns && totalHeight > 0) {
+    const scales = colHeights.map((h) => (h > 0 ? totalHeight / h : 1));
+    return {
+      grid: gridItems.map((item) => {
+        const scale = scales[item.col];
+        return { ...item, y: item.y * scale, h: item.h * scale };
+      }),
+      totalHeight,
+    };
+  }
+
+  return { grid: gridItems, totalHeight };
 }
 
 function MasonryItems({
@@ -198,8 +214,8 @@ export default function Masonry({
   }, [items]);
 
   const { grid, totalHeight } = useMemo(
-    () => buildGrid(items, columns, width),
-    [columns, items, width]
+    () => buildGrid(items, columns, width, { balanceColumns: autoScroll }),
+    [columns, items, width, autoScroll]
   );
 
   const startAutoScroll = () => {
