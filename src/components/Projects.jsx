@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Lightbulb, Wrench, TrendingUp } from 'lucide-react';
+import { Halo, ScriptNote } from './Decor';
 import Masonry from './Masonry';
 import CircularGallery from './CircularGallery';
 import SerlioGallery from './SerlioGallery';
@@ -152,7 +153,7 @@ const projects = [
     accentBg: 'rgba(43,122,91,0.08)',
     tags: ['苏绣风格迁移', 'ControlNet', '木刻上色', '非遗数字化'],
     pain: '传统非遗文化传播门槛高，艺术通识课缺乏 AIGC 专业工具链，难以让学生感受非遗工艺的现代应用价值。',
-    solution: '开发「图案转苏绣」精准风格迁移工作流 + 支持局部重绘的可视化编辑模块；利用 ControlNet 与线稿上色流实现非遗木刻版���的多色调动态上色模拟。受邀赴苏州大学线下宣讲演示。',
+    solution: '开发「图案转苏绣」精准风格迁移工作流 + 支持局部重绘的可视化编辑模块；利用 ControlNet 与线稿上色流实现非遗木��版���的多色调动态上色模拟。受邀赴苏州大学线下宣讲演示。',
     result: [
       { value: '3 套', label: '非遗 AIGC 工具' },
       { value: '线下', label: '宣讲落地' },
@@ -212,16 +213,13 @@ const projects = [
   },
 ];
 
-function ResultTag({ value, label }) {
+function ResultTag({ value, label, accent }) {
   return (
-    <div
-      className="rounded-2xl px-4 py-3 text-center"
-      style={{ background: '#F6F4F0', border: '1px solid rgba(0,0,0,0.04)' }}
-    >
-      <p className="text-lg font-bold" style={{ color: '#141414' }}>
+    <div className="text-center">
+      <p className="text-2xl font-bold display-font" style={{ color: accent, letterSpacing: '-0.02em' }}>
         {value}
       </p>
-      <p className="text-xs mt-0.5" style={{ color: '#A8A8AE' }}>
+      <p className="text-xs mt-1" style={{ color: '#9A9AA2' }}>
         {label}
       </p>
     </div>
@@ -232,18 +230,37 @@ function ProjectCard({ project, index: idx }) {
   const isEven = idx % 2 === 0;
 
   return (
-    <motion.article
+    <motion.div
       initial={{ y: 48, opacity: 0 }}
       whileInView={{ y: 0, opacity: 1 }}
       viewport={{ once: true, margin: '-80px' }}
       transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-0 rounded-3xl overflow-hidden`}
-      style={{
-        background: '#FFFFFF',
-        boxShadow: '0 4px 24px 0 rgba(0,0,0,0.06), 0 1px 6px 0 rgba(0,0,0,0.03)',
-        border: '1px solid rgba(0,0,0,0.04)',
-      }}
+      className="relative"
     >
+      {/* Bleeding ghost index number */}
+      <p
+        aria-hidden="true"
+        className={`hidden md:block absolute -top-14 ${isEven ? 'left-2' : 'right-2'} display-font font-bold select-none pointer-events-none z-0`}
+        style={{ fontSize: 'clamp(6rem, 11vw, 11rem)', color: 'rgba(20,20,20,0.05)', letterSpacing: '-0.04em', lineHeight: 1 }}
+      >
+        NO.{project.index}
+      </p>
+      {/* Colored halo bleeding behind the visual */}
+      <div
+        aria-hidden="true"
+        className={`absolute top-1/4 ${isEven ? '-left-16' : '-right-16'} w-[380px] h-[380px] rounded-full pointer-events-none z-0`}
+        style={{ background: project.accent, opacity: 0.13, filter: 'blur(90px)' }}
+      />
+      <article
+        className={`relative z-[1] flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-0 rounded-[28px] overflow-hidden`}
+        style={{
+          background: 'rgba(255,255,255,0.72)',
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
+          boxShadow: '0 20px 60px -24px rgba(20,20,30,0.16)',
+          border: '1px solid rgba(255,255,255,0.9)',
+        }}
+      >
       {/* Visual panel */}
       {project.id === 1 ? (
         <div
@@ -407,9 +424,9 @@ function ProjectCard({ project, index: idx }) {
             <div className="flex gap-3">
               <div
                 className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5"
-                style={{ background: 'rgba(30,64,53,0.07)' }}
+                style={{ background: project.accentBg }}
               >
-                <Lightbulb size={14} style={{ color: '#1E4035' }} />
+                <Lightbulb size={14} style={{ color: project.accent }} />
               </div>
               <div>
                 <p className="text-xs font-semibold mb-1" style={{ color: '#A8A8AE' }}>
@@ -423,9 +440,9 @@ function ProjectCard({ project, index: idx }) {
             <div className="flex gap-3">
               <div
                 className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5"
-                style={{ background: 'rgba(30,64,53,0.07)' }}
+                style={{ background: project.accentBg }}
               >
-                <Wrench size={14} style={{ color: '#1E4035' }} />
+                <Wrench size={14} style={{ color: project.accent }} />
               </div>
               <div>
                 <p className="text-xs font-semibold mb-1" style={{ color: '#A8A8AE' }}>
@@ -441,47 +458,61 @@ function ProjectCard({ project, index: idx }) {
 
         <div className="mt-6">
           <div className="flex items-center gap-2 mb-3">
-            <TrendingUp size={14} style={{ color: '#1E4035' }} />
-            <p className="text-xs font-semibold" style={{ color: '#A8A8AE' }}>
+            <TrendingUp size={14} style={{ color: project.accent }} />
+            <p className="text-xs font-semibold" style={{ color: '#9A9AA2' }}>
               商业结果
             </p>
           </div>
-          <div className="grid grid-cols-3 gap-3">
+          <div
+            className="grid grid-cols-3 gap-3 rounded-2xl py-4"
+            style={{ background: project.accentBg }}
+          >
             {project.result.map((r) => (
-              <ResultTag key={r.label} {...r} />
+              <ResultTag key={r.label} {...r} accent={project.accent} />
             ))}
           </div>
         </div>
       </div>
-    </motion.article>
+      </article>
+    </motion.div>
   );
 }
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-24" style={{ background: '#F6F4F0' }}>
-      <div className="max-w-[1700px] mx-auto px-8">
+    <section id="projects" className="relative py-28 overflow-hidden" style={{ background: '#F1F0F3' }}>
+      <Halo size={620} colors={['rgba(255,90,60,0.16)', 'rgba(255,201,168,0.08)']} style={{ top: '4%', left: '-8%' }} />
+      <Halo size={560} colors={['rgba(43,122,91,0.14)', 'rgba(168,224,199,0.07)']} style={{ top: '55%', right: '-10%' }} />
+
+      <div className="relative max-w-[1700px] mx-auto px-8">
         <motion.div
           initial={{ y: 24, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="mb-16"
+          className="mb-20 max-w-3xl"
         >
-          <p className="text-sm font-semibold tracking-widest uppercase mb-3" style={{ color: '#1E4035' }}>
+          <p className="text-xs font-bold tracking-[0.3em] uppercase mb-4 display-font" style={{ color: '#FF5A3C' }}>
             Selected Work
           </p>
           <h2
-            className="text-4xl font-bold tracking-tight"
-            style={{ color: '#141414', letterSpacing: '-0.02em' }}
+            className="text-4xl md:text-5xl font-bold tracking-tight"
+            style={{ color: '#1A1A1E', letterSpacing: '-0.02em', lineHeight: 1.1 }}
           >
-            精选项目，
-            <br className="hidden sm:block" />
-            每一个都有商业落地
+            精选项目，每一个都
+            <span className="relative inline-block">
+              <span style={{ color: '#FF5A3C' }}>商业落地</span>
+              <ScriptNote className="absolute -right-4 -top-7 text-3xl rotate-[-8deg]" style={{ whiteSpace: 'nowrap' }}>
+                真的能用！
+              </ScriptNote>
+            </span>
           </h2>
+          <p className="mt-6 text-base leading-relaxed" style={{ color: '#6C6C74' }}>
+            六个 AIGC 落地项目，从教育到电商、从非遗到建筑，每一个都跑通了「痛点 → 方案 → 结果」的完整链路。
+          </p>
         </motion.div>
 
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-24 md:gap-28">
           {projects.map((project, i) => (
             <ProjectCard key={project.id} project={project} index={i} />
           ))}
