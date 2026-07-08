@@ -11,10 +11,10 @@ export default function ChromaGrid({
   ease = 'power3.out',
 }) {
   const rootRef = useRef(null);
-  const fadeRef = useRef(null);
-  const setX   = useRef(null);
-  const setY   = useRef(null);
-  const pos    = useRef({ x: 0, y: 0 });
+  const colorRef = useRef(null);
+  const setX = useRef(null);
+  const setY = useRef(null);
+  const pos = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
     const el = rootRef.current;
@@ -43,18 +43,13 @@ export default function ChromaGrid({
   const handleMove = (e) => {
     const r = rootRef.current.getBoundingClientRect();
     moveTo(e.clientX - r.left, e.clientY - r.top);
-    gsap.to(fadeRef.current, { opacity: 0, duration: 0.25, overwrite: true });
+    // Reveal the color layer around the cursor
+    gsap.to(colorRef.current, { opacity: 1, duration: 0.25, overwrite: true });
   };
 
   const handleLeave = () => {
-    gsap.to(fadeRef.current, { opacity: 1, duration: fadeOut, overwrite: true });
-  };
-
-  const handleCardMove = (e) => {
-    const card = e.currentTarget;
-    const rect = card.getBoundingClientRect();
-    card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
-    card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+    // Fade the color layer out -> whole grid returns to grayscale
+    gsap.to(colorRef.current, { opacity: 0, duration: fadeOut, overwrite: true });
   };
 
   return (
@@ -65,20 +60,23 @@ export default function ChromaGrid({
       onPointerMove={handleMove}
       onPointerLeave={handleLeave}
     >
-      {items.map((c, i) => (
-        <article
-          key={i}
-          className="chroma-card"
-          onMouseMove={handleCardMove}
-          style={{ '--card-gradient': c.gradient }}
-        >
-          <div className="chroma-img-wrapper">
-            <img src={c.image} alt={c.title} loading="lazy" />
+      {/* Base layer: always grayscale */}
+      <div className="chroma-layer chroma-layer-gray">
+        {items.map((c, i) => (
+          <div className="chroma-cell" key={`g-${i}`}>
+            <img src={c.image} alt={c.title} loading="lazy" draggable={false} />
           </div>
-        </article>
-      ))}
-      <div className="chroma-overlay" />
-      <div ref={fadeRef} className="chroma-fade" />
+        ))}
+      </div>
+
+      {/* Color layer: revealed only within the spotlight around the cursor */}
+      <div ref={colorRef} className="chroma-layer chroma-layer-color">
+        {items.map((c, i) => (
+          <div className="chroma-cell" key={`c-${i}`}>
+            <img src={c.image} alt="" aria-hidden="true" loading="lazy" draggable={false} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
